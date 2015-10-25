@@ -1,0 +1,34 @@
+<div class="row form-group" ng-form="{{field}}" ng-class="{ 'has-error': {{field}}.$dirty && {{field}}.$invalid }">
+<!-- здесь мы создаем собственную директиву для работы с нашими формами
+привязываем разные события, аттрибуты и классы в зависимости от аттрибутов в нашиз форм-элементах
+тут мы проверяем обязательное ли поле и если его начали заполнять - добавляем класс has-error
+далее идет вывод аттрибутов и тегов для обязательных и необязательных полей в зависимости от значения аттрибута required -->
+	
+	<label class="col-sm-2 control-label"> {{ field | labelCase }} <span ng-if="required">*</span></label>
+	<div class="col-sm-6" ng-switch="required">
+		<!-- показываем это поле ввода для обязательных полей используя ng-if=required -->
+		<input ng-switch-when="true" ng-model="record[field][0]" type="{{record[field][1]}}" class="form-control" required ng-change="update()" ng-blur="blurUpdate()">
+
+		<!-- а таким образом мы будем выводить поля для ввода если они не обязательны
+		мы можем даже удалить ненужные поля в процессе заполнения -->
+		<div class="input-group" ng-switch-default>
+			<input ng-model="record[field][0]" type="{{record[field][1]}}" class="form-control" ng-change="update()" ng-blur="blurUpdate()">
+
+			<span class="input-group-btn">
+				<button class="btn btn-default" ng-click="remove(field)">
+					<span class="glyphicon glyphicon-remove-circle"></span>
+				</button>
+			</span>
+		</div>
+	</div>
+	
+	<!-- данный блок будет выводить наши сообщения об ошибках
+	это функциональность становится доступной благодаря модулю angular-messages 
+	и сообщение внутри первого параграфа будет выводиться только если поле было required
+	а вывод остальных сообщений мы будем контролировать с помощью коллекции error-msgs directives.js -->
+	<div class="col-sm-4 has-error" ng-show="{{field}}.$dirty && {{field}}.$invalid" ng-messages="{{field}}.$error">
+		<p class="control-label" ng-message="required"> {{ field | labelCase }} is required. </p>
+		<p class="control-label" ng-repeat="(key, value) in types" ng-message="{{key}}"> {{ field | labelCase }} {{value[1]}} </p>
+	</div>
+
+</div>

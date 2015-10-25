@@ -1,0 +1,18 @@
+<h2>New Contact</h2>
+
+<form name="newContact" novalidate class="form-horizontal">
+	<!-- our own directive for form fields -->
+	<!-- record=contact напрямую соотносится со $scope.contact обозначенным в контроллере
+	field представляет собой строковое значение которое мы будем использовать -->
+	<form-field record="contact" field="firstName" live="false" required="true"></form-field>
+	<form-field record="contact" field="lastName" live="false" required="true"></form-field>
+	<form-field ng-repeat='(key, value) in contact | keyFilter: "firstName" | keyFilter: "lastName" ' record="contact" field="{{key}}"></form-field>
+
+	<new-field record='contact' live='false'></new-field>
+
+	<div class="row form-group">
+		<div class="col-sm-offset-2">
+			<button class="btn btn-primary" ng-click="save()">Create Contact</button>
+		</div>
+	</div>
+</form>

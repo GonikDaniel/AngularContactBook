@@ -1,0 +1,15 @@
+<nav class="navbar navbar-default">
+	<div class="container-fluid">
+		<ul class="nav navbar-nav">
+			<!-- будем добавлять класс active с помощью константы PAGE с глобальной областью видимости -->
+			<li><a ng-class="{ active: PAGE === 'all' }" href="/contacts">All Contacts</a></li>
+			<li><a ng-class="{ active: PAGE === 'new' }" href="/contact/new">New Contact</a></li>
+		</ul>
+		<ul class="nav navbar-nav navbar-right">
+			<!-- дабы мы не редиректились на contacts (который будет по умолчанию для всех не заявленных страниц)
+			добавляем хак с target _self -->
+			<li><a ng-class="{ active: PAGE === 'settings' }" href="/settings">Settings</a></li>
+			<li><a href="/logout" target="_self">Log Out</a></li>
+		</ul>
+	</div>
+</nav>

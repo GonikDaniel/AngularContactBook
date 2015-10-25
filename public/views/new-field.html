@@ -1,0 +1,28 @@
+<div>
+<!-- Наш шаблон для функции добавления нового поля к форме контакта
+первая часть будет показываться при клике по определенному полю из выпадающего меню 
+(которое мы уже сооружаем ниже с помощью бутстрапа и ng-repeat) -->
+	<div class="row form-group" ng-form="newField" ng-if="display"> 
+		<div class="col-sm-2">
+			<input type="text" name="fieldName" class="form-control" required ng-model="field.name" placeholder="name">
+		</div>
+		<div class="col-sm-6">
+			<input type="{{field.type}}" name='fieldValue' class="form-control" ng-model="field.value" placeholder="value">
+		</div>
+		<div class="col-sm-4">
+			<button class="btn btn-primary" ng-click="add()">Add</button>
+			<button class="btn btn-primary" ng-click="remove()">Remove</button>
+		</div>
+	</div>
+
+	<div class="row form-group">
+		<div class="btn-group col-sm-offset-2 dropup">
+			<button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+				Add new field <span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu">
+				<li ng-repeat="(key, value) in types"><a ng-click="show(key)">{{value[0]}}</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
