@@ -1,0 +1,20 @@
+{
+    "name": "Angular-contactBook",
+    "preferGlobal": true,
+    "version": "0.0.1",
+    "author": "Gonik Daniel <gonik.daniel88@gmail.com>",
+    "description": "a simple contact book build on AngularJS and ExpressJS",
+    "license": "MIT",
+    "engines": {
+        "node": ">=0.10"
+    },
+    "scripts": {
+        "start": "node ./server.js"
+    },
+    "dependencies": {
+        "body-parser": "",
+        "bourne": "",
+        "express": "~4.10.4",
+        "express-session": "~1.9.3"
+    }
+}
